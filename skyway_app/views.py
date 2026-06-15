@@ -3,13 +3,14 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.templatetags.static import static
 import drone
 import json
+import os
 
 solo = drone.drone()
 soloconnected = False
 
 def index(request):  
   #print "here 1"
-  context = {'time_estimate': '5', 'GOOGLE_API_KEY': 'REMOVED_GOOGLE_API_KEY'}     
+  context = {'time_estimate': '5', 'GOOGLE_API_KEY': os.environ.get('GOOGLE_API_KEY', '')}
   #print "here 2"
   return render(request, 'skyway_app/index.html', context)
 
